@@ -1,6 +1,8 @@
 {
     "require": {
         "slim/slim": "3.*",
-        "slim/twig-view": "^2.2"
+        "slim/twig-view": "^2.2",
+        "ext-pdo": "*",
+        "slim/php-view": "^2.2"
     }
 }

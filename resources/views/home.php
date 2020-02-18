@@ -6,10 +6,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Solent DFTI Home</title>
+    <link rel="stylesheet" href="../resources/css/main.css">
+    <title><?= $vars['title'] ?></title>
 </head>
 <body>
+
+<header>
+    <h1><?= $vars['msg'] ?></h1>
+</header>
 
 </body>
 </html>
