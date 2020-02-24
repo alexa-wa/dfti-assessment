@@ -1,10 +1,17 @@
 <?php
 
 class Dbh {
+    /*
+    private $host = "localhost";
+    private $user = "assign206";
+    private $pwd = "shalaevi";
+    private $dbName = "assign206";
+    */
+
     private $host = "localhost";
     private $user = "root";
     private $pwd = "";
-    private $dbName = "register-bd";
+    private $dbName = "dfti-solent";
 
     protected function connect() {
         $dsn = 'mysql:host=' . $this->host . '; dbname=' . $this->dbName;

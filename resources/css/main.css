@@ -6,3 +6,109 @@ body,
     box-sizing: border-box;
     font-family: 'Maven Pro', Arial, sans-serif;
 }
+
+header {
+    position: relative;
+    height: 30vh;
+    width: 100%;
+    background-image: url("https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80");
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+}
+
+.header-contents {
+    width: 45%;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+header:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.3);
+}
+
+.header_description {
+    font-weight: 300;
+    font-size: .8em;
+}
+
+.home_content_wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.cowabunga_form_wrapper {
+    width: 50%;
+    float: left;
+    color: #fff;
+    height: 250px;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+}
+
+.cowabunga_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cowabunga_form p {
+    width: 80%;
+    text-align: left;
+}
+
+.cowabunga_form input {
+    display: block;
+    color: #afb1be;
+    width: 80%;
+    background: #32364a;
+    margin-top: 3px;
+    padding: 10px 25px;
+    border-top: 2px solid #393d52;
+    border-bottom: 2px solid #393d52;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    box-shadow: none;
+    font-family: 'Maven Pro', Arial, sans-serif;
+}
+
+.cowabunga_form button {
+    margin: 15px 0;
+    border-radius: 50px;
+    background: transparent;
+    padding: 10px 50px;
+    border: 2px solid #DC6180;
+    color: #DC6180;
+    text-transform: uppercase;
+    font-size: 11px;
+    -webkit-transition-property: background,color;
+    transition-property: background,color;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+}
+
+.cowabunga_form button:hover {
+    cursor: pointer;
+    background: #DC6180;
+    color: #fff;
+}
+
+.js-errors,
+.php-errors {
+    display: inline;
+    margin-top: 3px;
+    font-size: .8em;
+}
