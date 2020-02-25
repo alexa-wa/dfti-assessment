@@ -17,12 +17,24 @@ class PoiModel extends Dbh {
     }
 
     protected function requestPoiUser($username) {
-        $sql = "SELECT * FROM `poi_users` WHERE `username` = ?";
+        $sql = "SELECT * FROM `poi_users` WHERE `username` LIKE ?";
         $stmt = $this->connect()->prepare($sql);
 
         $stmt->execute([$username]);
 
         if($users = $stmt->fetch())
+            return $users;
+
+        return null;
+    }
+
+    protected function requestPoiByRegion($region) {
+        $sql = "SELECT * FROM `pointsofinterest` WHERE `region` = ?";
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute([$region]);
+
+        if($users = $stmt->fetchAll())
             return $users;
 
         return null;

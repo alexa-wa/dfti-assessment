@@ -117,3 +117,54 @@ $app->map(['GET', 'POST'], '/user/sign-out', function (Request $request, Respons
 
     return $response->withStatus(302)->withHeader('Location', '../home');
 });
+
+$app->map(['GET', 'POST'], '/poi/add', function (Request $request, Response $response, array $args) {
+
+    $poiControl = new PoiControl();
+    $post = $request->getParsedBody();
+
+    $poiName = $post['name'];
+    $poiType = $post['type'];
+    $poiCountry = $post['country'];
+    $poiRegion = $post['region'];
+    $poiDescription = $post['description'];
+
+    try {
+        $poiControl->setNewPoi($poiName, $poiType, $poiCountry, $poiRegion, $poiDescription);
+    }
+    catch (Exception $e) {
+        echo $e->getCode();
+        exit('Something went wrong!');
+    }
+    return $response->withStatus(302)->withHeader('Location', '../home');
+});
+
+$app->get( '/poi/search', function (Request $request, Response $response, array $args) {
+
+    $poiControl = new PoiControl();
+    $region = $_GET['region'];
+
+    try {
+        $records = $poiControl->getPoiByRegion($region);
+
+        $someJSON = [];
+
+        foreach ($records as $record) {
+            $someJSON[] = [
+                "name" => "{$record['name']}",
+                "type" => "{$record['type']}",
+                "country" => "{$record['country']}",
+                "region" => "{$record['region']}",
+                "description" => "{$record['description']}"
+            ];
+        }
+
+        $newJSON = json_encode($someJSON);
+        echo $newJSON;
+
+    }
+    catch (Exception $e) {
+        echo $e->getCode();
+        exit('Something went wrong!');
+    }
+});

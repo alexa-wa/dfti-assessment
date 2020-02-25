@@ -14,4 +14,8 @@ class PoiControl extends PoiModel {
         return $this->requestPoiUser($username);
     }
 
+    public function getPoiByRegion($region) {
+        return $this->requestPoiByRegion($region);
+    }
+
 }
