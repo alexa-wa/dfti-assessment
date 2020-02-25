@@ -30,6 +30,17 @@ $app->map(['GET', 'POST'], '/home', function (Request $request, Response $respon
     return $this->view->render($response, 'home.php', ['values' => $values]);
 })->setName('home');
 
+$app->map(['GET', 'POST'], '/welcome', function (Request $request, Response $response, array $args) {
+
+    $values = [
+        'title' => 'Solent DFTI – Welcome',
+        'desc' => 'Solent DFTI Assessment Welcome Page',
+        'status' => 'Welcome works!'
+    ];
+
+    return $this->view->render($response, 'templates/welcome.php', ['values' => $values]);
+})->setName('welcome');
+
 $app->map(['GET', 'POST'], '/user/sign-up', function (Request $request, Response $response, array $args) {
 
     $poiControl = new PoiControl();
@@ -56,11 +67,12 @@ $app->map(['GET', 'POST'], '/user/sign-up', function (Request $request, Response
         if (empty($errors)) {
             try {
                 $poiControl->setPoiUser($username, $password, 0);
-            } catch (Exception $e) {
-                echo $e->getCode();
+            }
+            catch (Exception $e) {
+                exit($e->getCode());
             }
         } else {
-            $error = array_shift($errors);
+            exit(array_shift($errors));
         }
     }
 
@@ -79,9 +91,8 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
         $password = $post['password'];
 
         $record = $poiControl->getPoiUser($username);
-        var_dump($record);
 
-        if(password_verify($password, $record["password"])) {
+        if(password_verify($password, $record['password'])) {
             session_regenerate_id();
 
             $_SESSION["gatekeeper"] = null;
@@ -92,10 +103,10 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
         }
 
     } else {
-        $error = array_shift($errors);
+        exit("Unable to find or authorize your account!");
     }
 
-    return $response->withStatus(302)->withHeader('Location', '../home');
+    return $response->withStatus(302)->withHeader('Location', '../welcome');
 });
 
 $app->map(['GET', 'POST'], '/user/sign-out', function (Request $request, Response $response, array $args) {
