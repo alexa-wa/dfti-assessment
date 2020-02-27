@@ -90,7 +90,12 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
         $username = preg_replace('/[^A-Za-z0-9\-]/', '', $post['username']);
         $password = $post['password'];
 
-        $record = $poiControl->getPoiUser($username);
+        try {
+            $record = $poiControl->getPoiUser($username);
+        }
+        catch (Exception $e) {
+            exit("Unable to find or authorize your account!");
+        }
 
         if(password_verify($password, $record['password'])) {
             session_regenerate_id();
@@ -106,7 +111,7 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
         exit("Unable to find or authorize your account!");
     }
 
-    return $response->withStatus(302)->withHeader('Location', '../welcome');
+    return $response->withStatus(302)->withHeader('Location', '../home');
 });
 
 $app->map(['GET', 'POST'], '/user/sign-out', function (Request $request, Response $response, array $args) {
@@ -151,6 +156,7 @@ $app->get( '/poi/search', function (Request $request, Response $response, array 
 
         foreach ($records as $record) {
             $someJSON[] = [
+                "id" => "{$record['id']}",
                 "name" => "{$record['name']}",
                 "type" => "{$record['type']}",
                 "country" => "{$record['country']}",
@@ -167,4 +173,18 @@ $app->get( '/poi/search', function (Request $request, Response $response, array 
         echo $e->getCode();
         exit('Something went wrong!');
     }
+});
+
+$app->map(['GET', 'POST'], '/poi/recommend', function (Request $request, Response $response, array $args) {
+
+    $poiControl = new PoiControl();
+    $region = $_GET['id'];
+
+    try {
+        $poiControl->addRating($region);
+    }
+    catch (Exception $e) {
+        $e->getMessage();
+    }
+
 });

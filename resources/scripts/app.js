@@ -38,7 +38,14 @@ function ajaxRequest() {
             for (let property in jsonData) {
                 if (jsonData.hasOwnProperty(property)) {
                     response.innerHTML = jsonData.map((element) =>
-                        `<div class="record">${element.name} ${element.type} ${element.country} ${element.region} ${element.description}</div>`)
+                        `<div class="record">
+                           ${element.name} 
+                           ${element.type} 
+                           ${element.country} 
+                           ${element.region} 
+                           ${element.description}
+                           <button onclick="ajaxRecommend('${element.id}')">Recommend</button>
+                        </div>`)
                         .join('<br/>');
                 }
             }
@@ -48,5 +55,17 @@ function ajaxRequest() {
     });
 
     xmlHttp.open("GET", "/solent-slim/public/poi/search?region=" + value, true);
+    xmlHttp.send();
+}
+
+function ajaxRecommend(region) {
+    const xmlHttp = new XMLHttpRequest();
+
+    if (!xmlHttp) {
+        console.error("Unable to establish the connection!");
+        return false;
+    }
+
+    xmlHttp.open("GET", "/solent-slim/public/poi/recommend?id=" + region, true);
     xmlHttp.send();
 }

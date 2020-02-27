@@ -18,4 +18,8 @@ class PoiControl extends PoiModel {
         return $this->requestPoiByRegion($region);
     }
 
+    public function addRating($poiId) {
+        return $this->iterateRating($poiId);
+    }
+
 }

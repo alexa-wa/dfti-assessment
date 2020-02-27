@@ -11,12 +11,48 @@
 </head>
 <body>
 
+<nav>
+    <div class="nav_item_wrapper">
+        <div class="nav_item"><a href="welcome">Add New POI</a></div>
+        <div class="nav_item">Search for POI</div>
+        <div class="nav_item">3</div>
+    </div>
+    <div class="authentication">
+        <?php if (isset($_SESSION['gatekeeper'])) { ?>
+            <?php echo "Welcome, " . $_SESSION['gatekeeper']; ?>
+            <a href="/solent-slim/public/user/sign-out">Log out</a>
+        <?php } else { echo "How are you today?"; } ?>
+    </div>
+</nav>
+
 <header>
     <div class="header-contents">
         <h1 class="header_heading"><?= $values['title'] ?></h1>
         <h2 class="header_description"><?= $values['desc'] ?></h2>
     </div>
 </header>
+
+<div class="page_wrapper">
+
+    <section class="about">
+        <h1>Project Features</h1>
+        <div class="about_list_items">
+            <div class="about_list_item">
+                <h4 class="about_heading">Share Points of Interest!</h4>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+            </div>
+            <div class="about_list_item">
+                <h4 class="about_heading">Rate and Read reviews!</h4>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+            </div>
+            <div class="about_list_item">
+                <h4 class="about_heading">Search and Explore!</h4>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+            </div>
+        </div>
+    </section>
+
+</div>
 
 <?php if (!isset($_SESSION['gatekeeper'])) { ?>
 <div class="home_content_wrapper">
@@ -42,11 +78,6 @@
         </form>
     </div>
 </div>
-<?php } else { ?>
-
-    <p>Hello, <?php echo $_SESSION['gatekeeper'] ?> </p>
-    <a href="/solent-slim/public/user/sign-out">Log out</a>
-
 <?php } ?>
 
 </body>

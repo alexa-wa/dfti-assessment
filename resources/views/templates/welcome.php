@@ -10,31 +10,40 @@
     <title><?= $values['title'] ?></title>
 </head>
 <body>
+
+<nav>
+    <div class="nav_item_wrapper">
+        <div class="nav_item">Add New POI</div>
+        <div class="nav_item">Search for POI</div>
+        <div class="nav_item">3</div>
+    </div>
+    <div class="authentication">
+        <?php if (isset($_SESSION['gatekeeper'])) { ?>
+            <?php echo "Welcome, " . $_SESSION['gatekeeper']; ?>
+            <a href="/solent-slim/public/user/sign-out">Log out</a>
+        <?php } ?>
+    </div>
+</nav>
+
 <header>
     <div class="header-contents">
         <h1 class="header_heading"><?= $values['title'] ?></h1>
         <h2 class="header_description">
-            <?php if (isset($_SESSION['gatekeeper'])) { ?>
-                <?php echo "Welcome, " . $_SESSION['gatekeeper']; ?>
-                <a href="/solent-slim/public/user/sign-out">Log out</a>
-            <?php } ?>
+
         </h2>
     </div>
 </header>
 
 <?php if (isset($_SESSION['gatekeeper'])) { ?>
-    <nav>
-        <div class="nav_item">Add new POI</div>
-        <div class="nav_item">Search for POI</div>
-    </nav>
 
-    <form action="/solent-slim/public/poi/add" method="post">
+    <form class="subject_form search" action="/solent-slim/public/poi/add" method="post">
         <p class="form-heading">Add new POI</p>
-        <input type="text" required autocomplete="off" name="name" placeholder="Name">
-        <input type="text" required autocomplete="off" name="type" placeholder="Type">
-        <input type="text" required autocomplete="off" name="country" placeholder="Country">
-        <input type="text" required autocomplete="off" name="region" placeholder="Region">
-        <input type="text" required autocomplete="off" name="description" placeholder="Description">
+        <input class="subject_field" type="text" required autocomplete="off" name="name" placeholder="Name">
+        <input class="subject_field" type="text" required autocomplete="off" name="type" placeholder="Type">
+        <input class="subject_field" type="text" required autocomplete="off" name="country" placeholder="Country">
+        <input class="subject_field" type="text" required autocomplete="off" name="region" placeholder="Region">
+        <input class="subject_field" type="text" required autocomplete="off" name="description"
+               placeholder="Description">
         <button>Submit</button>
     </form>
 
