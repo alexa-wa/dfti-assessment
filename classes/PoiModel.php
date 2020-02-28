@@ -9,11 +9,11 @@ class PoiModel extends Dbh {
         $stmt->execute([$username, $password, $isAdmin]);
     }
 
-    protected function addNewPoi($name, $type, $country, $region, $description) {
-        $sql = "INSERT INTO `pointsofinterest` (`name`, `type`, `country`, `region`, `description`) VALUES (?, ?, ?, ?, ?)";
+    protected function addNewPoi($name, $type, $country, $region, $description, $recommended, $user) {
+        $sql = "INSERT INTO `pointsofinterest` (`name`, `type`, `country`, `region`, `description`, `recommended`, `user`) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connect()->prepare($sql);
 
-        $stmt->execute([$name, $type, $country, $region, $description]);
+        $stmt->execute([$name, $type, $country, $region, $description, $recommended, $user]);
     }
 
     protected function iterateRating($poiId) {

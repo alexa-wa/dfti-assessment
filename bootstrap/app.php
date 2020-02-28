@@ -19,6 +19,11 @@ $container['view'] = new \Slim\Views\PhpRenderer(__DIR__ . '/../resources/views'
     'cache' => false
 ]);
 
+/*
+ *
+ * Handling page load scripts
+ * and assigning them to .PHP files
+ */
 $app->map(['GET', 'POST'], '/home', function (Request $request, Response $response, array $args) {
 
     $values = [
@@ -30,17 +35,33 @@ $app->map(['GET', 'POST'], '/home', function (Request $request, Response $respon
     return $this->view->render($response, 'home.php', ['values' => $values]);
 })->setName('home');
 
-$app->map(['GET', 'POST'], '/welcome', function (Request $request, Response $response, array $args) {
+$app->map(['GET', 'POST'], '/poiadd', function (Request $request, Response $response, array $args) {
 
     $values = [
-        'title' => 'Solent DFTI – Welcome',
-        'desc' => 'Solent DFTI Assessment Welcome Page',
-        'status' => 'Welcome works!'
+        'title' => 'Solent DFTI – Add new POI',
+        'desc' => 'Solent DFTI Assessment POI adding page',
+        'status' => 'Add works!'
     ];
 
-    return $this->view->render($response, 'templates/welcome.php', ['values' => $values]);
-})->setName('welcome');
+    return $this->view->render($response, 'templates/poiadd.php', ['values' => $values]);
+})->setName('poiadd');
 
+$app->map(['GET', 'POST'], '/poisearch', function (Request $request, Response $response, array $args) {
+
+    $values = [
+        'title' => 'Solent DFTI – Search for a POI',
+        'desc' => 'Solent DFTI Assessment POI search page',
+        'status' => 'Search works!'
+    ];
+
+    return $this->view->render($response, 'templates/poisearch.php', ['values' => $values]);
+})->setName('poisearch');
+
+/*
+ *
+ * Handling page form action scripts
+ * for GET/POST requests
+ */
 $app->map(['GET', 'POST'], '/user/sign-up', function (Request $request, Response $response, array $args) {
 
     $poiControl = new PoiControl();
@@ -67,8 +88,7 @@ $app->map(['GET', 'POST'], '/user/sign-up', function (Request $request, Response
         if (empty($errors)) {
             try {
                 $poiControl->setPoiUser($username, $password, 0);
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 exit($e->getCode());
             }
         } else {
@@ -92,12 +112,11 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
 
         try {
             $record = $poiControl->getPoiUser($username);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             exit("Unable to find or authorize your account!");
         }
 
-        if(password_verify($password, $record['password'])) {
+        if (password_verify($password, $record['password'])) {
             session_regenerate_id();
 
             $_SESSION["gatekeeper"] = null;
@@ -116,7 +135,7 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
 
 $app->map(['GET', 'POST'], '/user/sign-out', function (Request $request, Response $response, array $args) {
 
-    if(isset($_SESSION['gatekeeper'])) {
+    if (isset($_SESSION['gatekeeper'])) {
         session_destroy();
     }
 
@@ -133,18 +152,19 @@ $app->map(['GET', 'POST'], '/poi/add', function (Request $request, Response $res
     $poiCountry = $post['country'];
     $poiRegion = $post['region'];
     $poiDescription = $post['description'];
+    $poiRecommended = 0;
+    $poiUser = $_SESSION['gatekeeper'];
 
     try {
-        $poiControl->setNewPoi($poiName, $poiType, $poiCountry, $poiRegion, $poiDescription);
-    }
-    catch (Exception $e) {
+        $poiControl->setNewPoi($poiName, $poiType, $poiCountry, $poiRegion, $poiDescription, $poiRecommended, $poiUser);
+    } catch (Exception $e) {
         echo $e->getCode();
         exit('Something went wrong!');
     }
-    return $response->withStatus(302)->withHeader('Location', '../home');
+    return $response->withStatus(302)->withHeader('Location', '../poiadd');
 });
 
-$app->get( '/poi/search', function (Request $request, Response $response, array $args) {
+$app->get('/poi/search', function (Request $request, Response $response, array $args) {
 
     $poiControl = new PoiControl();
     $region = $_GET['region'];
@@ -168,8 +188,7 @@ $app->get( '/poi/search', function (Request $request, Response $response, array 
         $newJSON = json_encode($someJSON);
         echo $newJSON;
 
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo $e->getCode();
         exit('Something went wrong!');
     }
@@ -182,8 +201,7 @@ $app->map(['GET', 'POST'], '/poi/recommend', function (Request $request, Respons
 
     try {
         $poiControl->addRating($region);
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         $e->getMessage();
     }
 

@@ -51,7 +51,7 @@ nav {
 
 header {
     position: relative;
-    height: 100vh;
+    height: 70vh;
     width: 100%;
     background-image: url("https://images.unsplash.com/photo-1477346611705-65d1883cee1e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80");
     background-size: cover;
@@ -62,6 +62,7 @@ header {
 
 a {
     text-decoration: none;
+    color: #fff;
 }
 
 .header-contents {
@@ -180,7 +181,7 @@ header:after {
 
 .about_list_item {
     width: 33.3333%;
-    padding: 15px 0;
+    padding: 15px 5px;
 }
 
 .about_heading {
@@ -190,4 +191,29 @@ header:after {
 .about_list_item span {
     font-size: .8em;
     line-height: 1.8;
+}
+
+.description {
+    width: 80%;
+    margin: 0 auto;
+    height: 550px;
+}
+
+.description_item {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: block;
+    padding: 25px 35px;
+}
+
+.contents {
+    background-image: url("https://images.unsplash.com/photo-1496559346440-a8e13f897fe6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+    background-size: cover;
+}
+
+.reg_text {
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 10px 0;
 }

@@ -6,8 +6,8 @@ class PoiControl extends PoiModel {
         return $this->addPoiUser($username, $password, $isAdmin);
     }
 
-    public function setNewPoi($name, $type, $country, $region, $description) {
-        return $this->addNewPoi($name, $type, $country, $region, $description);
+    public function setNewPoi($name, $type, $country, $region, $description, $recommended, $user) {
+        return $this->addNewPoi($name, $type, $country, $region, $description, $recommended, $user);
     }
 
     public function getPoiUser($username) {

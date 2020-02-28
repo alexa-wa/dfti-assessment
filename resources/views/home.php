@@ -13,15 +13,15 @@
 
 <nav>
     <div class="nav_item_wrapper">
-        <div class="nav_item"><a href="welcome">Add New POI</a></div>
-        <div class="nav_item">Search for POI</div>
-        <div class="nav_item">3</div>
+        <a href="poiadd" class="nav_item">Add New POI</a>
+        <a href="poisearch" class="nav_item">Search for POI</a>
+        <div class="nav_item">Review POI</div>
     </div>
     <div class="authentication">
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
             <?php echo "Welcome, " . $_SESSION['gatekeeper']; ?>
             <a href="/solent-slim/public/user/sign-out">Log out</a>
-        <?php } else { echo "How are you today?"; } ?>
+        <?php } else { echo "<a href='/solent-slim/public/home'>Home</a>"; } ?>
     </div>
 </nav>
 
@@ -39,16 +39,32 @@
         <div class="about_list_items">
             <div class="about_list_item">
                 <h4 class="about_heading">Share Points of Interest!</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+                <span>Feel free to share your experience with Points of Interest, that you have visited by adding
+                    them on the map
+                </span>
             </div>
             <div class="about_list_item">
                 <h4 class="about_heading">Rate and Read reviews!</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+                <span>Help other tourists by rating Points of Interest and writing personal experience reviews!
+                    Please be polite and honest!</span>
             </div>
             <div class="about_list_item">
                 <h4 class="about_heading">Search and Explore!</h4>
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at ea, minus rem rerum vero?</span>
+                <span>Planning your travel, but you don't know where to go and what's the place rating? Look it
+                    up now!</span>
             </div>
+        </div>
+    </section>
+
+    <section class="description">
+        <div class="description_item contents"></div>
+        <div class="description_item">
+            <h4>Points of Interest Project Description</h4>
+            <p class="reg_text">This project was developed by Aleksandrs Bogackins for Solent University, DFTI.</p>
+            <p class="reg_text">This uses PHP Slim, closely working with JS for the best user experience!</p>
+
+            <h4>Points of Interest Project Description</h4>
+            <p class="reg_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas!</p>
         </div>
     </section>
 
