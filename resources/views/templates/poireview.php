@@ -14,8 +14,8 @@
 <nav>
     <div class="nav_item_wrapper">
         <a href="poiadd" class="nav_item">Add New POI</a>
-        <a href="#" class="nav_item">Search for POI</a>
-        <a href="poireview" class="nav_item">Review POI</a>
+        <a href="poisearch" class="nav_item">Search for POI</a>
+        <a href="#" class="nav_item">Review POI</a>
     </div>
     <div class="authentication">
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
@@ -45,6 +45,6 @@
     <?php } ?>
 </div>
 
-<script src="../resources/scripts/app.js"></script>
 </body>
+<script src="../resources/scripts/app.js"></script>
 </html>

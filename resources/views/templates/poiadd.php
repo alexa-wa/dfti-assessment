@@ -15,7 +15,7 @@
     <div class="nav_item_wrapper">
         <a href="#" class="nav_item">Add New POI</a>
         <a href="poisearch" class="nav_item">Search for POI</a>
-        <div class="nav_item">Review POI</div>
+        <a href="poireview" class="nav_item">Review POI</a>
     </div>
     <div class="authentication">
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
@@ -35,16 +35,23 @@
 <div class="page_wrapper">
     <?php if (isset($_SESSION['gatekeeper'])) { ?>
 
-        <form class="subject_form search" action="/solent-slim/public/poi/add" method="post">
-            <p class="form-heading">Add new POI</p>
-            <input class="subject_field" type="text" required autocomplete="off" name="name" placeholder="Name">
-            <input class="subject_field" type="text" required autocomplete="off" name="type" placeholder="Type">
-            <input class="subject_field" type="text" required autocomplete="off" name="country" placeholder="Country">
-            <input class="subject_field" type="text" required autocomplete="off" name="region" placeholder="Region">
-            <input class="subject_field" type="text" required autocomplete="off" name="description"
-                   placeholder="Description">
-            <button>Submit</button>
-        </form>
+        <section class="description">
+            <div class="description_item subject"></div>
+            <div class="description_item">
+                <h4>You are adding a New point of Interest</h4>
+                <form class="subject_form search" action="/solent-slim/public/poi/add" method="post">
+                    <p class="reg_text">Please respect our Terms of Use, Terms of Service and other related
+                        policies when adding the new Point of Interest!</p>
+                    <input class="subject_field" type="text" required autocomplete="off" name="name" placeholder="Name">
+                    <input class="subject_field" type="text" required autocomplete="off" name="type" placeholder="Type">
+                    <input class="subject_field" type="text" required autocomplete="off" name="country" placeholder="Country">
+                    <input class="subject_field" type="text" required autocomplete="off" name="region" placeholder="Region">
+                    <input class="subject_field" type="text" required autocomplete="off" name="description"
+                           placeholder="Description">
+                    <button class="cowabunga_button subject_field_button">Submit</button>
+                </form>
+            </div>
+        </section>
 
         <p id="response"></p>
     <?php } else { ?>

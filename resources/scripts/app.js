@@ -69,3 +69,12 @@ function ajaxRecommend(region) {
     xmlHttp.open("GET", "/solent-slim/public/poi/recommend?id=" + region, true);
     xmlHttp.send();
 }
+
+function ajaxReview(id) {
+    const xmlHttp = new XMLHttpRequest();
+
+    if (!xmlHttp) {
+        console.error("Unable to establish the connection!");
+        return false;
+    }
+}

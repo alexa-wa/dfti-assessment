@@ -23,6 +23,13 @@ class PoiModel extends Dbh {
         $stmt->execute([$poiId]);
     }
 
+    protected function addNewReview($poiId, $review, $isApproved) {
+        $sql = "INSERT INTO `poi_reviews` (`poi_id`, `review`, `is_approved`) VALUES (?, ?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute([$poiId, $review, $isApproved]);
+    }
+
     protected function requestPoiUser($username) {
         $sql = "SELECT * FROM `poi_users` WHERE `username` LIKE ?";
         $stmt = $this->connect()->prepare($sql);

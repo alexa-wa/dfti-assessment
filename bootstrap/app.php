@@ -57,6 +57,17 @@ $app->map(['GET', 'POST'], '/poisearch', function (Request $request, Response $r
     return $this->view->render($response, 'templates/poisearch.php', ['values' => $values]);
 })->setName('poisearch');
 
+$app->map(['GET', 'POST'], '/poireview', function(Request $request, Response $response, array $args) {
+
+    $values = [
+        'title' => 'Solent DFTI – Review a POI',
+        'desc' => 'Solent DFTI Assessment POI review page',
+        'status' => 'Review works!'
+    ];
+
+    return $this->view->render($response, 'templates/poireview.php', ['values' => $values]);
+})->setName('poireview');
+
 /*
  *
  * Handling page form action scripts

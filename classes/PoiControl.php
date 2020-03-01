@@ -10,6 +10,10 @@ class PoiControl extends PoiModel {
         return $this->addNewPoi($name, $type, $country, $region, $description, $recommended, $user);
     }
 
+    public function setNewReview($poiId, $review, $isApproved) {
+        return $this->addNewReview($poiId, $review, $isApproved);
+    }
+
     public function getPoiUser($username) {
         return $this->requestPoiUser($username);
     }

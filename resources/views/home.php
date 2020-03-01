@@ -15,7 +15,7 @@
     <div class="nav_item_wrapper">
         <a href="poiadd" class="nav_item">Add New POI</a>
         <a href="poisearch" class="nav_item">Search for POI</a>
-        <div class="nav_item">Review POI</div>
+        <a href="poireview" class="nav_item">Review POI</a>
     </div>
     <div class="authentication">
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
@@ -65,6 +65,10 @@
 
             <h4>Points of Interest Project Description</h4>
             <p class="reg_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas!</p>
+            <p class="reg_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas!</p>
+
+            <h4>Points of Interest Project Description</h4>
+            <p class="reg_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, quas!</p>
         </div>
     </section>
 
@@ -81,7 +85,7 @@
                    class="js-reg-pas">
             <p class="php-errors"><?php // ...TO-BE IMPLEMENTED.. ?></p>
             <p class="js-errors"></p>
-            <button>Sign-up</button>
+            <button class="cowabunga_button">Sign-up</button>
         </form>
     </div>
 
@@ -90,7 +94,7 @@
             <p class="form-heading">Please sign-in here</p>
             <input type="text" required autocomplete="off" name="username" placeholder="Username">
             <input type="password" required autocomplete="off" name="password" placeholder="Password">
-            <button>Sign-in</button>
+            <button class="cowabunga_button">Sign-in</button>
         </form>
     </div>
 </div>
