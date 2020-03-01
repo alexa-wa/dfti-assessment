@@ -35,9 +35,11 @@
 <div class="page_wrapper">
     <?php if (isset($_SESSION['gatekeeper'])) { ?>
 
-        <p class="form-heading">Search for POI by region</p>
-        <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
-        <button onclick="ajaxRequest()">Submit</button>
+        <div class="search_bar_wrapper">
+            <p class="form-heading">Search for POI by region</p>
+            <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
+            <button onclick="ajaxRequest()">Submit</button>
+        </div>
 
         <p id="response"></p>
     <?php } else { ?>

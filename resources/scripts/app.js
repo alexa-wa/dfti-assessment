@@ -39,14 +39,13 @@ function ajaxRequest() {
                 if (jsonData.hasOwnProperty(property)) {
                     response.innerHTML = jsonData.map((element) =>
                         `<div class="record">
-                           ${element.name} 
-                           ${element.type} 
-                           ${element.country} 
-                           ${element.region} 
-                           ${element.description}
+                           <div class="record_item">${element.name}</div> 
+                           <div class="record_item">${element.type}</div> 
+                           <div class="record_item">${element.country}</div> 
+                           <div class="record_item">${element.region}</div> 
+                           <div class="record_item">${element.description}</div>
                            <button onclick="ajaxRecommend('${element.id}')">Recommend</button>
-                        </div>`)
-                        .join('<br/>');
+                        </div>`).join('');
                 }
             }
         } catch (exception) {
