@@ -37,7 +37,7 @@
 
         <p class="form-heading">Search for POI by region</p>
         <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
-        <button onclick="ajaxRequest()">Submit</button>
+        <button onclick="ajaxReviewRequest()">Submit</button>
 
         <p id="response"></p>
     <?php } else { ?>

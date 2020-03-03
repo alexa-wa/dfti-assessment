@@ -217,3 +217,13 @@ $app->map(['GET', 'POST'], '/poi/recommend', function (Request $request, Respons
     }
 
 });
+
+$app->map(['GET', 'POST'], '/poi/review', function (Request $request, Response $response, array $args) {
+
+    $poiControl = new PoiControl();
+    $id = $_GET['id'];
+    $review = $_GET['review'];
+
+    $poiControl->setNewReview($id, $review, 0);
+
+});

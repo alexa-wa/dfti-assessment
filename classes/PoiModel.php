@@ -54,4 +54,16 @@ class PoiModel extends Dbh {
         return null;
     }
 
+    protected function requestPoiById($id) {
+        $sql = "SELECT * FROM `pointsofinterest` WHERE `id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute([$id]);
+
+        if($users = $stmt->fetchAll())
+            return $users;
+
+        return null;
+    }
+
 }
