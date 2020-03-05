@@ -91,8 +91,8 @@ function ajaxReviewRequest() {
                            <div class="record_item">${element.type}</div> 
                            <div class="record_item">${element.country}</div> 
                            <div class="record_item">${element.region}</div> 
-                           <div class="record_item"><input type="text" id="review" name="review"></div>
-                           <button onclick="ajaxReview('${element.id}')">Review</button>
+                           <input type="text" class="review" name="review" placeholder="Type your review"/>
+                           <button onclick="ajaxReview('${element.id}')" class="submit_review">Review</button>
                         </div>`).join('');
                 }
             }
@@ -107,13 +107,19 @@ function ajaxReviewRequest() {
 
 function ajaxReview(id) {
     const xmlHttp = new XMLHttpRequest();
-    const reviewValue = document.getElementById("review").value;
+    const submitButtons = document.querySelectorAll(".submit_review");
 
     if (!xmlHttp) {
         console.error("Unable to establish the connection!");
         return false;
     }
 
-    xmlHttp.open("GET", "/solent-slim/public/poi/review?id=" + id + "&review=" + reviewValue, true);
-    xmlHttp.send();
+    submitButtons.forEach((e) => {
+        e.addEventListener('click', () => {
+            if(e.previousElementSibling.value !== "") {
+                xmlHttp.open("GET", "/solent-slim/public/poi/review?id=" + id + "&review=" + e.previousElementSibling.value, true);
+                xmlHttp.send();
+            }
+        });
+    });
 }

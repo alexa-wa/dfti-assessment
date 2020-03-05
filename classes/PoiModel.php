@@ -48,8 +48,8 @@ class PoiModel extends Dbh {
 
         $stmt->execute([$region]);
 
-        if($users = $stmt->fetchAll())
-            return $users;
+        if($regionPoi = $stmt->fetchAll())
+            return $regionPoi;
 
         return null;
     }
@@ -60,8 +60,20 @@ class PoiModel extends Dbh {
 
         $stmt->execute([$id]);
 
-        if($users = $stmt->fetchAll())
-            return $users;
+        if($idPoi = $stmt->fetchAll())
+            return $idPoi;
+
+        return null;
+    }
+
+    protected function requestPoiReviews($id) {
+        $sql = "SELECT * FROM `poi_reviews` WHERE `id` = ?";
+        $stmt = $this->connect()->prepare($sql);
+
+        $stmt->execute([$id]);
+
+        if($reviews = $stmt->fetchAll())
+            return $reviews;
 
         return null;
     }

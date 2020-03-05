@@ -55,7 +55,7 @@
 
         <p id="response"></p>
     <?php } else { ?>
-        <p>Please log into the system!</p>
+        <p class="reg_text">Please log into the system to access all features!</p>
     <?php } ?>
 </div>
 

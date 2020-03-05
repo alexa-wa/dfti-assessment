@@ -34,14 +34,17 @@
 
 <div class="page_wrapper">
     <?php if (isset($_SESSION['gatekeeper'])) { ?>
+    <div class="search_bar_wrapper">
+        <h4>You are adding a Review for a Point of Interest</h4>
+        <p class="reg_text">Please type-in the region to access all features (for example "Helsinki")</p>
 
-        <p class="form-heading">Search for POI by region</p>
         <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
         <button onclick="ajaxReviewRequest()">Submit</button>
+    </div>
 
         <p id="response"></p>
     <?php } else { ?>
-        <p>Please log into the system!</p>
+        <p class="reg_text">Please log into the system to access all features!</p>
     <?php } ?>
 </div>
 

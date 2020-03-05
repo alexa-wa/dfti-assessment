@@ -21,7 +21,9 @@
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
             <?php echo "Welcome, " . $_SESSION['gatekeeper']; ?>
             <a href="/solent-slim/public/user/sign-out">Log out</a>
-        <?php } else { echo "<a href='/solent-slim/public/home'>Home</a>"; } ?>
+        <?php } else {
+            echo "<a href='/solent-slim/public/home'>Home</a>";
+        } ?>
     </div>
 </nav>
 
@@ -36,14 +38,16 @@
     <?php if (isset($_SESSION['gatekeeper'])) { ?>
 
         <div class="search_bar_wrapper">
-            <p class="form-heading">Search for POI by region</p>
+            <h4>You are searching for a Point of Interest</h4>
+            <p class="reg_text">Please type-in the region to access the "Recommend" option</p>
+
             <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
             <button onclick="ajaxRequest()">Submit</button>
         </div>
 
         <p id="response"></p>
     <?php } else { ?>
-        <p>Please log into the system!</p>
+        <p class="reg_text">Please log into the system to access all features!</p>
     <?php } ?>
 </div>
 

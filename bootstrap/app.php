@@ -146,9 +146,8 @@ $app->map(['GET', 'POST'], '/user/sign-in', function (Request $request, Response
 
 $app->map(['GET', 'POST'], '/user/sign-out', function (Request $request, Response $response, array $args) {
 
-    if (isset($_SESSION['gatekeeper'])) {
+    if (isset($_SESSION['gatekeeper']))
         session_destroy();
-    }
 
     return $response->withStatus(302)->withHeader('Location', '../home');
 });
@@ -166,6 +165,9 @@ $app->map(['GET', 'POST'], '/poi/add', function (Request $request, Response $res
     $poiRecommended = 0;
     $poiUser = $_SESSION['gatekeeper'];
 
+    if(empty($poiName) || empty($poiType) || empty($poiCountry) || empty($poiRegion))
+        exit("Please complete the form!");
+
     try {
         $poiControl->setNewPoi($poiName, $poiType, $poiCountry, $poiRegion, $poiDescription, $poiRecommended, $poiUser);
     } catch (Exception $e) {
@@ -179,6 +181,9 @@ $app->get('/poi/search', function (Request $request, Response $response, array $
 
     $poiControl = new PoiControl();
     $region = $_GET['region'];
+
+    if(empty($region))
+        exit("Region field can't be empty!");
 
     try {
         $records = $poiControl->getPoiByRegion($region);
@@ -211,7 +216,7 @@ $app->map(['GET', 'POST'], '/poi/recommend', function (Request $request, Respons
     $region = $_GET['id'];
 
     try {
-        $poiControl->addRating($region);
+        $poiControl->setRating($region);
     } catch (Exception $e) {
         $e->getMessage();
     }

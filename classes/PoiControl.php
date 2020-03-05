@@ -10,6 +10,10 @@ class PoiControl extends PoiModel {
         return $this->addNewPoi($name, $type, $country, $region, $description, $recommended, $user);
     }
 
+    public function setRating($poiId) {
+        return $this->iterateRating($poiId);
+    }
+
     public function setNewReview($poiId, $review, $isApproved) {
         return $this->addNewReview($poiId, $review, $isApproved);
     }
@@ -26,8 +30,8 @@ class PoiControl extends PoiModel {
         return $this->requestPoiById($id);
     }
 
-    public function addRating($poiId) {
-        return $this->iterateRating($poiId);
+    public function getPoiReviews($id) {
+        return $this->requestPoiReviews($id);
     }
 
 }
