@@ -91,7 +91,7 @@ function ajaxReviewRequest() {
                            <div class="record_item">${element.type}</div> 
                            <div class="record_item">${element.country}</div> 
                            <div class="record_item">${element.region}</div> 
-                           <input type="text" class="review" name="review" placeholder="Type your review"/>
+                           <input type="text" data-id="${element.id}" class="review" name="review" placeholder="Type your review"/>
                            <button onclick="ajaxReview('${element.id}')" class="submit_review">Review</button>
                         </div>`).join('');
                 }
@@ -116,7 +116,7 @@ function ajaxReview(id) {
 
     submitButtons.forEach((e) => {
         e.addEventListener('click', () => {
-            if(e.previousElementSibling.value !== "") {
+            if (e.previousElementSibling.value !== "") {
                 xmlHttp.open("GET", "/solent-slim/public/poi/review?id=" + id + "&review=" + e.previousElementSibling.value, true);
                 xmlHttp.send();
             }

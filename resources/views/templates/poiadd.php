@@ -16,6 +16,7 @@
         <a href="#" class="nav_item">Add New POI</a>
         <a href="poisearch" class="nav_item">Search for POI</a>
         <a href="poireview" class="nav_item">Review POI</a>
+        <a href="poiread" class="nav_item">Read reviews</a>
     </div>
     <div class="authentication">
         <?php if (isset($_SESSION['gatekeeper'])) { ?>
