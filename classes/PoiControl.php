@@ -26,10 +26,6 @@ class PoiControl extends PoiModel {
         return $this->requestPoiByRegion($region);
     }
 
-    public function getPoiById($id) {
-        return $this->requestPoiById($id);
-    }
-
     public function getPoiReviews($id) {
         return $this->requestPoiReviews($id);
     }

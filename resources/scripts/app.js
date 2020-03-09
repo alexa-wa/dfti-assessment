@@ -1,3 +1,6 @@
+let startTime = Date.now();
+let endTime, timeElapsed = 0;
+
 function validation() {
     const usernameHolder = document.querySelector('.js-reg-usr').value;
     const passwordHolder = document.querySelector('.js-reg-pas').value;
@@ -91,7 +94,7 @@ function ajaxReviewRequest() {
                            <div class="record_item">${element.type}</div> 
                            <div class="record_item">${element.country}</div> 
                            <div class="record_item">${element.region}</div> 
-                           <input type="text" data-id="${element.id}" class="review" name="review" placeholder="Type your review"/>
+                           <input type="text" id="field-${element.id}" class="review" name="review" placeholder="Type your review"/>
                            <button onclick="ajaxReview('${element.id}')" class="submit_review">Review</button>
                         </div>`).join('');
                 }
@@ -105,21 +108,30 @@ function ajaxReviewRequest() {
     xmlHttp.send();
 }
 
+function getTimeElapsed() {
+    endTime = Date.now();
+    timeElapsed = endTime - startTime;
+    startTime = Date.now();
+
+    return timeElapsed * 0.001;
+}
+
 function ajaxReview(id) {
     const xmlHttp = new XMLHttpRequest();
-    const submitButtons = document.querySelectorAll(".submit_review");
+    const reviewValue = document.getElementById("field-" + id);
 
     if (!xmlHttp) {
         console.error("Unable to establish the connection!");
         return false;
     }
 
-    submitButtons.forEach((e) => {
-        e.addEventListener('click', () => {
-            if (e.previousElementSibling.value !== "") {
-                xmlHttp.open("GET", "/solent-slim/public/poi/review?id=" + id + "&review=" + e.previousElementSibling.value, true);
-                xmlHttp.send();
-            }
-        });
-    });
+    const timeOut = getTimeElapsed();
+
+    if(timeOut < 25) {
+        alert( "Please wait for " + Math.round((25 - timeOut)) + " more seconds to leave a review!");
+        return false;
+    }
+
+    xmlHttp.open("GET", "/solent-slim/public/poi/review?id=" + id + "&review=" + reviewValue.value, true);
+    xmlHttp.send();
 }

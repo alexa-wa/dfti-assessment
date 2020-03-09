@@ -34,12 +34,21 @@
 </header>
 
 <div class="page_wrapper">
+    <?php if (isset($_SESSION['gatekeeper'])) { ?>
 
+        <div class="search_bar_wrapper">
+            <h4>You are searching for a Point of Interest reviews</h4>
+            <p class="reg_text">Please type-in the region to access the "Read reviews" feature</p>
+
+            <input type="text" required autocomplete="off" name="region" placeholder="POI Region" id="value">
+            <button onclick="#">Submit</button>
+        </div>
+
+        <p id="response"></p>
+    <?php } else { ?>
+        <p class="reg_text">Please log into the system to access all features!</p>
+    <?php } ?>
 </div>
-
-<?php if (!isset($_SESSION['gatekeeper'])) { ?>
-
-<?php } ?>
 
 </body>
 <script src="../resources/scripts/app.js"></script>

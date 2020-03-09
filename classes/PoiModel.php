@@ -54,18 +54,6 @@ class PoiModel extends Dbh {
         return null;
     }
 
-    protected function requestPoiById($id) {
-        $sql = "SELECT * FROM `pointsofinterest` WHERE `id` = ?";
-        $stmt = $this->connect()->prepare($sql);
-
-        $stmt->execute([$id]);
-
-        if($idPoi = $stmt->fetchAll())
-            return $idPoi;
-
-        return null;
-    }
-
     protected function requestPoiReviews($id) {
         $sql = "SELECT * FROM `poi_reviews` WHERE `id` = ?";
         $stmt = $this->connect()->prepare($sql);
